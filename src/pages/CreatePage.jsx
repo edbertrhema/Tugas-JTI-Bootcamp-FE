@@ -21,7 +21,7 @@ const CreatePage = () => {
         }
         try {
             setIsLoading(true);
-            const response = await axios.post(`${VITE_BACKEND_URL}/api/products`, {name: name, quantiy: quantity, price: price, image: image});
+            const response = await axios.post(`${VITE_BACKEND_URL}/api/products`, {name: name, quantity: quantity, price: price, image: image});
             toast.success(`Save ${response.data.name} Successfully`);
             setIsLoading(false);
             navigate("/");
