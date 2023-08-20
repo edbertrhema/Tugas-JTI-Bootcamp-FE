@@ -18,7 +18,7 @@ const TableProduct = ({ products, getProducts }) => {
       try {
         await axios.delete(`${VITE_BACKEND_URL}/api/products/${id}`);
         toast.success("Delete a Product Successfully");
-        getProducts();
+        //getProducts();
       } catch (error) {
         toast.error(error.message);
       }
