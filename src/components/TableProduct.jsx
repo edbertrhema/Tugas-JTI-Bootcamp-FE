@@ -1,4 +1,8 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { VITE_BACKEND_URL } from "../App";
 import { Link } from "react-router-dom";
 
 
@@ -20,7 +24,7 @@ const TableProduct = ({ products, getProducts }) => {
       }
     }
   };
-    
+
   return (
     <div className="mt-6 overflow-auto">
       <table className="table-auto mx-auto bg-white">
