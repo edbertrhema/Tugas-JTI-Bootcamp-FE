@@ -1,8 +1,26 @@
 /* eslint-disable react/prop-types */
-
 import { Link } from "react-router-dom";
 
-const TableProduct = ({ products }) => {
+
+const TableProduct = ({ products, getProducts }) => {
+  const deleteProduct = async (id) => {
+    const result = await Swal.fire({
+      title: "Do you want to delete the product?",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await axios.delete(`${VITE_BACKEND_URL}/api/products/${id}`);
+        toast.success("Delete a Product Successfully");
+        getProducts();
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+  };
+    
   return (
     <div className="mt-6 overflow-auto">
       <table className="table-auto mx-auto bg-white">
@@ -28,7 +46,8 @@ const TableProduct = ({ products }) => {
                 <td className="p-4 border-b ">
                   <div className="flex gap-2">
                     <Link  to={`/edit/${product._id}`} className="inline-block text-sm font-semibold text-white px-2 py-1 bg-blue-500 rounded hover:bg-blue-600">Edit</Link>
-                    <button className="inline-block text-sm font-semibold text-white px-2 py-1 bg-red-500 rounded hover:bg-red-600">Delete</button>
+                    <button onClick={() => deleteProduct(product._id)}
+                    className="inline-block text-sm font-semibold text-white px-2 py-1 bg-red-500 rounded hover:bg-red-600">Delete</button>
                   </div>
                 </td>
               </tr>
