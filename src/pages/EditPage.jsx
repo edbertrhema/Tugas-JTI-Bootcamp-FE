@@ -37,7 +37,7 @@ const EditPage = () => {
     e.preventDefault();
     try {
       await axios.put(`${VITE_BACKEND_URL}/api/products/${id}`, product);
-      toast.success("Updated a product successfully");
+      toast.success(`Updated ${product.name} successfully`);
       navigate("/");
     } catch (error) {
       toast.error(error.message);
